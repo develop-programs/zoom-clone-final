@@ -28,7 +28,7 @@ const Alert = ({ title, iconUrl }: PermissionCardProps) => {
               asChild
               className="bg-blue-600 h-12 hover:bg-blue-600/80 text-white flex gap-2"
             >
-              <Link href="/Home">
+              <Link href="/Dashboard/Home">
                 {" "}
                 <svg
                   fill="none"

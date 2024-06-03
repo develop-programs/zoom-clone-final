@@ -27,9 +27,13 @@ type CallLayoutType = "grid" | "speaker-left" | "speaker-right";
 
 const MeetingRoom = () => {
   const searchParams = useSearchParams();
+
   const pathname = usePathname();
+
   const isPersonalRoom = !!searchParams.get("personal");
+
   const router = useRouter();
+
   const [layout, setLayout] = useState<CallLayoutType>("speaker-left");
   const [showParticipants, setShowParticipants] = useState(false);
   const { useCallCallingState } = useCallStateHooks();
@@ -50,7 +54,6 @@ const MeetingRoom = () => {
     }
   };
 
-
   return (
     <section className="relative h-screen w-full overflow-hidden pt-4 text-white">
       <div className="relative flex size-full items-center justify-center">
@@ -70,9 +73,7 @@ const MeetingRoom = () => {
         <Button
           className="md:hidden rounded-full p-2 bg-[#19232d] hover:bg-[#4c535b]/80"
           onClick={() => {
-            navigator.clipboard.writeText(
-              `${process.env.NEXT_PUBLIC_BASE_URL}${pathname}`
-            );
+            navigator.clipboard.writeText(pathname.split("/")[2]);
             toast.success("Link Copied");
           }}
         >
@@ -140,9 +141,7 @@ const MeetingRoom = () => {
         <Button
           className="rounded-full p-2 bg-[#19232d] hover:bg-[#4c535b]/80"
           onClick={() => {
-            navigator.clipboard.writeText(
-              `${process.env.NEXT_PUBLIC_BASE_URL}${pathname}`
-            );
+            navigator.clipboard.writeText(pathname.split("/")[2]);
             toast.success("Link copied");
           }}
         >

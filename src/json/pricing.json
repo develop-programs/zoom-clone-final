@@ -1,0 +1,37 @@
+{
+    "pricing": [
+        {
+            "title": "Free",
+            "price": "₹0",
+            "description": "No credit card required",
+            "buttonText": "Sign Up",
+            "features": [
+                "30-day free trial",
+                "No credit card required",
+                "Free forever"
+            ]
+        },
+        {
+            "title": "Pro",
+            "price": "₹150",
+            "description": "₹150 per month",
+            "buttonText": "Get Now",
+            "features": [
+                "1000 meetings per month",
+                "50000 participants per month",
+                "1000 recordings per month"
+            ]
+        },
+        {
+            "title": "Enterprise",
+            "price": "₹999",
+            "description": "₹999 per month",
+            "buttonText": "Get Now",
+            "features": [
+                "Unlimited meetings",
+                "Unlimited participants",
+                "Unlimited recordings"
+            ]
+        }
+    ]
+}

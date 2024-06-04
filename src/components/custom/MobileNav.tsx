@@ -1,9 +1,22 @@
+"use client";
 import React from "react";
-import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
+import {
+  Sheet,
+  SheetClose,
+  SheetContent,
+  SheetTrigger,
+} from "@/components/ui/sheet";
 import { Button } from "@/components/ui/button";
 import SideNav from "./SideNav";
+import { NavData } from "@/json/NavData";
+import Logo from "../Logo";
+import Link from "next/link";
+import Image from "next/image";
+import { usePathname } from "next/navigation";
+import { cn } from "@/lib/utils";
 
 export default function MobileNav() {
+  const pathname = usePathname();
   return (
     <Sheet>
       <SheetTrigger asChild>
@@ -25,8 +38,34 @@ export default function MobileNav() {
           </svg>
         </Button>
       </SheetTrigger>
-      <SheetContent side="left" className="p-0">
-        <SideNav />
+      <SheetContent side="left" className="p-4 space-y-4">
+        <Logo />
+        <SheetClose asChild>
+          <div>
+            {NavData.map((item: any, index: any) => (
+              <SheetClose key={index} asChild>
+                <Link
+                  href={`/Dashboard${item.link}`}
+                  className={cn(
+                    pathname.startsWith(`/Dashboard${item.link}`)
+                      ? "bg-blue-600"
+                      : "bg-transparent",
+                    "w-full flex justify-start items-center gap-4 p-4 rounded-md"
+                  )}
+                >
+                  <Image
+                    src={item.icon}
+                    alt={`${item.name} icon`}
+                    width={100}
+                    height={100}
+                    className="size-6"
+                  />
+                  <span className="text-base font-bold">{item.name}</span>
+                </Link>
+              </SheetClose>
+            ))}
+          </div>
+        </SheetClose>
       </SheetContent>
     </Sheet>
   );

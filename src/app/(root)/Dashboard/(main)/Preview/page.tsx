@@ -3,7 +3,8 @@ import React from "react";
 
 export default function page() {
   return (
-    <div className="h-full overflow-y-auto p-6">
+    <div className="grid gap-6 p-6">
+      <h1 className="text-3xl font-bold">Preview</h1>
       <CustomCards type="ended" />
     </div>
   );

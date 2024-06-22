@@ -2,7 +2,6 @@ import GettingStarted from "@/components/hero/GettingStarted";
 import Information from "@/components/hero/Information";
 import Navigation from "@/components/hero/Navigation";
 import Social from "@/components/hero/Social";
-import { Button } from "@/components/ui/button";
 import Image from "next/image";
 import React from "react";
 
@@ -22,7 +21,7 @@ export default function page() {
           <span className="text-lg font-black">Yoom</span>
         </div>
         <div className="grid text-center gap-4">
-          <span className="text-3xl xl:text-5xl font-bold flex items-start gap-2">
+          <span className="text-sm min-[425px]:text-xl xl:text-5xl font-bold flex items-start gap-2">
             FOR
             {["MEETING", "GATHERING", "CHILLING"].map((word) => (
               <p className="first-letter:text-blue-500" key={word}>
@@ -56,16 +55,16 @@ export default function page() {
         </div>
       </div>
       <Information />
-      <div className="absolute top-52 xl:top-32 right-24">
+      <div className="absolute top-52 xl:top-32 right-12 md:right-24">
         <Image
           src="/images/layer-01.png"
           alt="layer"
           width={500}
           height={500}
-          className="size-32 xl:size-44"
+          className="size-12 sm:size-24 md:size-32 xl:size-44"
         />
       </div>
-      <div className="fixed top-0 py-80 -left-28 -rotate-90 flex flex-col">
+      <div className="hidden fixed top-0 py-80 -left-28 -rotate-90 md:flex flex-col">
         <div>
           <span className="text-lg font-semibold">
             IT&apos;S NOT JUST A MEETING, it&apos;s yooming

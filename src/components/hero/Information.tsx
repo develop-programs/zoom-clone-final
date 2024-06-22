@@ -1,22 +1,7 @@
 import Image from "next/image";
 import React from "react";
-const SampleData: { title: string; image: string; description: string }[] = [
-  {
-    title: "ONE ON ONE MEETING",
-    image: "/images/gettyimages-001.png",
-    description: "with  CHAT and  screen Sharing",
-  },
-  {
-    title: "GROUP MEETING",
-    image: "/images/gettyimages-002.png",
-    description: "with  CHAT and  screen Sharing with end to end privacy",
-  },
-  {
-    title: "FOR ALL TYPES OF DEVICES MOBILE",
-    image: "/images/gettyimages-003.png",
-    description: "LAPTOP, TABLET, ADD MORE ALL MODERN BROWSERS COMPATIBLE",
-  },
-];
+import { SampleData } from "@/json/information";
+
 export default function Information() {
   return (
     <div className="fixed hidden xl:block bottom-12 left-52">

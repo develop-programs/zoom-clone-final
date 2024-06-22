@@ -34,7 +34,7 @@ const SocialData: { title: string; icon: string; link: string }[] = [
 export default function Social() {
   return (
     <TooltipProvider>
-      <div className="fixed bottom-12 left-10 grid gap-2">
+      <div className="fixed bottom-44 min-[425px]:bottom-24 sm:bottom-12 left-4 sm:left-10 grid gap-2">
         {SocialData.map((item, index) => {
           return (
             <Tooltip key={index}>

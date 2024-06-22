@@ -34,7 +34,23 @@ export default function page() {
           onClick={() => {
             router.push("/");
           }}
+          className="flex gap-2 items-center"
         >
+          <svg
+            fill="none"
+            strokeWidth={1.5}
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+            xmlns="http://www.w3.org/2000/svg"
+            aria-hidden="true"
+            className="size-4"
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              d="M15.75 19.5 8.25 12l7.5-7.5"
+            />
+          </svg>
           Back
         </Button>
       </div>
@@ -64,7 +80,7 @@ function PricingCard({
   return (
     <div
       className={cn(
-        "w-80 h-[28rem] p-6 rounded-2xl bg-slate-950 border border-slate-200",
+        "w-2/4 lg:w-72 xl:w-80 h-[28rem] p-6 rounded-2xl bg-slate-950 border border-slate-200",
         title === "Pro" ? "scale-110" : "scale-100"
       )}
     >

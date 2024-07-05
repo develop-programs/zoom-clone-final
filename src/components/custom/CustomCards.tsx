@@ -76,107 +76,116 @@ export default function CustomCards({
   const noCallsMessage = getNoCallsMessage();
 
   return (
-    <div className="relative grid grid-cols-1 gap-5 xl:grid-cols-2">
-      {calls && calls.length > 0 ? (
-        calls
-          .filter((meeting: Call | CallRecording) => {
-            if (filter === "today") {
-              return (
-                moment((meeting as Call).state?.startsAt).format(
-                  "YYYY-MM-DD"
-                ) === moment().format("YYYY-MM-DD")
-              );
-            } else if (filter === "custom") {
-              return (
-                moment((meeting as Call).state?.startsAt).format(
-                  "YYYY-MM-DD"
-                ) === moment().subtract(1, "days").format("YYYY-MM-DD")
-              );
-            } else {
-              return true;
-            }
-          })
-          .reverse()
-          .map((meeting: Call | CallRecording) => (
-            <MeetingCard
-              key={(meeting as Call).id}
-              icon={
-                type === "ended"
-                  ? "/icons/preview.svg"
-                  : type === "upcoming"
-                  ? "/icons/upcomming.svg"
-                  : "/icons/camera.svg"
-              }
-              title={
-                (meeting as Call).state?.custom?.description ||
-                (meeting as CallRecording).filename?.substring(0, 20) ||
-                "No Description"
-              }
-              date={
-                moment((meeting as Call).state?.startsAt).format(
-                  "DD-MM-YYYY hh:mm A"
-                ) || (meeting as CallRecording).start_time?.toLocaleString()
-              }
-              isPreviousMeeting={type === "ended"}
-              link={
-                type === "recordings"
-                  ? (meeting as CallRecording).url
-                  : `${process.env.NEXT_PUBLIC_BASE_URL}/meeting/${
-                      (meeting as Call).id
-                    }`
-              }
-              buttonIcon1={
-                type === "recordings" ? "/icons/play.svg" : undefined
-              }
-              buttonText={type === "recordings" ? "Play" : "Start"}
-              handleClick={
-                type === "recordings"
-                  ? () => router.push(`${(meeting as CallRecording).url}`)
-                  : () => router.push(`/meeting/${(meeting as Call).id}`)
-              }
-            />
-          ))
-      ) : (
-        <h1 className="text-xl font-semibold text-white">{noCallsMessage}</h1>
-      )}
-      <div className="absolute right-0 -top-16">
-        <DropdownMenu>
-          <DropdownMenuTrigger asChild>
-            <Button
-              variant="outline"
-              className="w-32 flex justify-start items-center gap-3"
-            >
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="24"
-                height="24"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="2"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                className="size-4"
+    <div className="space-y-6">
+      <div className="flex justify-between items-center">
+        <div>
+          <h1 className="text-3xl font-bold">
+            {type == "ended" ? "Preview" : type}
+          </h1>
+        </div>
+        <div className="">
+          <DropdownMenu>
+            <DropdownMenuTrigger asChild>
+              <Button
+                variant="outline"
+                className="w-32 flex justify-start items-center gap-3"
               >
-                <path d="M3 6h18" />
-                <path d="M7 12h10" />
-                <path d="M10 18h4" />
-              </svg>
-              Filter
-            </Button>
-          </DropdownMenuTrigger>
-          <DropdownMenuContent>
-            <DropdownMenuItem onClick={() => setFilter("all")}>
-              All
-            </DropdownMenuItem>
-            <DropdownMenuItem onClick={() => setFilter("today")}>
-              Today
-            </DropdownMenuItem>
-            <DropdownMenuItem onClick={() => setFilter("custom")}>
-              Custom
-            </DropdownMenuItem>
-          </DropdownMenuContent>
-        </DropdownMenu>
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="24"
+                  height="24"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  className="size-4"
+                >
+                  <path d="M3 6h18" />
+                  <path d="M7 12h10" />
+                  <path d="M10 18h4" />
+                </svg>
+                Filter
+              </Button>
+            </DropdownMenuTrigger>
+            <DropdownMenuContent>
+              <DropdownMenuItem onClick={() => setFilter("all")}>
+                All
+              </DropdownMenuItem>
+              <DropdownMenuItem onClick={() => setFilter("today")}>
+                Today
+              </DropdownMenuItem>
+              <DropdownMenuItem onClick={() => setFilter("custom")}>
+                Custom
+              </DropdownMenuItem>
+            </DropdownMenuContent>
+          </DropdownMenu>
+        </div>
+      </div>
+      <div className="grid grid-cols-1 gap-5 pb-12 xl:grid-cols-2 h-[calc(100vh-5rem)] overflow-y-auto">
+        {calls && calls.length > 0 ? (
+          calls
+            .filter((meeting: Call | CallRecording) => {
+              if (filter === "today") {
+                return (
+                  moment((meeting as Call).state?.startsAt).format(
+                    "YYYY-MM-DD"
+                  ) === moment().format("YYYY-MM-DD")
+                );
+              } else if (filter === "custom") {
+                return (
+                  moment((meeting as Call).state?.startsAt).format(
+                    "YYYY-MM-DD"
+                  ) === moment().subtract(1, "days").format("YYYY-MM-DD")
+                );
+              } else {
+                return true;
+              }
+            })
+            .reverse()
+            .map((meeting: Call | CallRecording) => (
+              <MeetingCard
+                key={(meeting as Call).id}
+                icon={
+                  type === "ended"
+                    ? "/icons/preview.svg"
+                    : type === "upcoming"
+                    ? "/icons/upcomming.svg"
+                    : "/icons/camera.svg"
+                }
+                title={
+                  (meeting as Call).state?.custom?.description ||
+                  (meeting as CallRecording).filename?.substring(0, 20) ||
+                  "No Description"
+                }
+                date={
+                  moment((meeting as Call).state?.startsAt).format(
+                    "DD-MM-YYYY hh:mm A"
+                  ) || (meeting as CallRecording).start_time?.toLocaleString()
+                }
+                isPreviousMeeting={type === "ended"}
+                link={
+                  type === "recordings"
+                    ? (meeting as CallRecording).url
+                    : `${process.env.NEXT_PUBLIC_BASE_URL}/meeting/${
+                        (meeting as Call).id
+                      }`
+                }
+                buttonIcon1={
+                  type === "recordings" ? "/icons/play.svg" : undefined
+                }
+                buttonText={type === "recordings" ? "Play" : "Start"}
+                handleClick={
+                  type === "recordings"
+                    ? () => router.push(`${(meeting as CallRecording).url}`)
+                    : () => router.push(`/meeting/${(meeting as Call).id}`)
+                }
+              />
+            ))
+        ) : (
+          <h1 className="text-xl font-semibold text-white">{noCallsMessage}</h1>
+        )}
       </div>
     </div>
   );

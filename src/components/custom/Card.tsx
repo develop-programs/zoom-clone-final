@@ -28,7 +28,7 @@ const MeetingCard = ({
   const { toast } = useToast();
 
   return (
-    <section className="flex max-w-full flex-col gap-8 justify-between rounded-xl bg-dark1 px-5 py-8">
+    <section className="flex max-w-full flex-col gap-8 justify-between rounded-xl bg-slate-900 px-5 py-8">
       <article className="flex flex-col gap-5">
         <Image src={icon} alt="upcoming" width={28} height={28} />
         <div className="flex justify-between">

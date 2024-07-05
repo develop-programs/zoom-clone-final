@@ -10,7 +10,7 @@ import { NavData } from "@/json/NavData";
 export default function SideNav() {
   const pathname = usePathname();
   return (
-    <div className="h-screen bg-dark1 flex flex-col p-4">
+    <div className="h-screen bg-dark1 flex flex-col p-4 border-r-2 border-slate-800">
       <Logo />
       <div className="flex-1 space-y-2 mt-6">
         {NavData.map((item: any, index: any) => (
@@ -19,7 +19,7 @@ export default function SideNav() {
             key={index}
             className={cn(
               pathname.startsWith(`/Dashboard${item.link}`)
-                ? "bg-blue-600"
+                ? "bg-blue-600 text-white"
                 : "bg-transparent",
               "w-full flex justify-start items-center gap-4 p-4 rounded-md"
             )}
@@ -29,7 +29,7 @@ export default function SideNav() {
               alt={`${item.name} icon`}
               width={100}
               height={100}
-              className="size-6"
+              className="size-6 backdrop-invert-0"
             />
             <span className="text-base font-bold">{item.name}</span>
           </Link>

@@ -27,7 +27,7 @@ export default function Navigation() {
           <Button
             variant="ghost"
             size="lg"
-            className="rounded-full bg-blue-600 hover:bg-blue-600/80"
+            className="rounded-full bg-blue-600 border text-white border-blue-600 hover:bg-transparent hover:text-white"
           >
             <Link href="/Dashboard/Home">Dashboard</Link>
           </Button>

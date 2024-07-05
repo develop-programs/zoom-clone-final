@@ -7,6 +7,7 @@ import { ClerkProvider } from "@clerk/nextjs";
 import "@stream-io/video-react-sdk/dist/css/styles.css";
 import "react-datepicker/dist/react-datepicker.css";
 import { Toaster } from "@/components/ui/sonner";
+import { cn } from "@/lib/utils";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -26,11 +27,15 @@ export default function RootLayout({
   return (
     <ClerkProvider>
       <html lang="en" suppressHydrationWarning>
-        <body className={inter.className}>
+        <body
+          className={cn(
+            "min-h-screen bg-dark1 text-white antialiased",
+            inter.className
+          )}
+        >
           <ThemeProvider
             attribute="class"
             defaultTheme="dark"
-            enableSystem
             disableTransitionOnChange
           >
             {children}

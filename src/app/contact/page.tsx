@@ -7,7 +7,7 @@ export default function page() {
   return (
     <div className="h-screen">
       <Navigation />
-      <div className="grid w-full px-24 py-6 space-y-4">
+      <div className="grid w-full px-24 py-6 space-y-12">
         <div className="w-full h-[30rem]">
           <iframe
             src="https://www.google.com/maps/embed?pb=!1m10!1m8!1m3!1d14876.10436905128!2d81.6144673!3d21.2308139!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sen!2sin!4v1716932216911!5m2!1sen!2sin"

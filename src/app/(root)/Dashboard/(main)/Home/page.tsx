@@ -19,10 +19,10 @@ export default function page() {
           backgroundRepeat: "no-repeat",
         }}
       >
-        <div className="inline-flex h-full p-6 flex-col justify-between">
+        <div className="inline-flex h-full p-6 flex-col justify-between text-white">
           <UpcommingMeeting />
           <div className="grid gap-2">
-            <div className="flex gap-2 items-baseline">
+            <div className="flex gap-2 items-baseline text-white">
               <CurrentTime />
             </div>
             <span className="text-lg flex items-center">

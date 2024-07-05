@@ -26,8 +26,8 @@ const PricingPage: {
 export default function page() {
   const router = useRouter();
   return (
-    <div className="h-screen flex items-center justify-center gap-12">
-      <div className="absolute inset-0 m-8">
+    <div className="relative h-screen flex items-center justify-center gap-12">
+      <div className="fixed inset-0  w-full h-14  flex items-center px-6">
         <Button
           variant="outline"
           size="sm"
@@ -54,17 +54,19 @@ export default function page() {
           Back
         </Button>
       </div>
-      {PricingPage.map((item: Props, index: any) => (
-        <PricingCard
-          key={index}
-          title={item.title}
-          buttonText={item.buttonText}
-          description={item.description}
-          price={item.price}
-          features={item.features}
-          onClick={() => console.log("clicked")}
-        />
-      ))}
+      <div className="flex flex-col lg:flex-row items-center gap-6 mt-72 md:mt-44 lg:mt-0 p-6">
+        {PricingPage.map((item: Props, index: any) => (
+          <PricingCard
+            key={index}
+            title={item.title}
+            buttonText={item.buttonText}
+            description={item.description}
+            price={item.price}
+            features={item.features}
+            onClick={() => console.log("clicked")}
+          />
+        ))}
+      </div>
     </div>
   );
 }
@@ -78,38 +80,17 @@ function PricingCard({
   onClick,
 }: Props) {
   return (
-    <div
-      className={cn(
-        "w-2/4 lg:w-72 xl:w-80 h-[28rem] p-6 rounded-2xl bg-slate-950 border border-slate-200",
-        title === "Pro" ? "scale-110" : "scale-100"
-      )}
-    >
-      <div className="space-y-2">
-        <h1 className="text-3xl font-bold">{title}</h1>
-        <p className="text-base font-normal">{description}</p>
-        <h1 className="text-3xl font-bold">{price}</h1>
+    <div className="w-full lg:w-[18rem] xl:w-[25rem] grid grid-cols-2 lg:grid-cols-1 mt-12 border-2 border-black gap-12 px-6 py-10 rounded-lg">
+      <div className="grid gap-3">
+        <span className="text-2xl font-bold">{title}</span>
+        <h1 className="text-4xl font-bold">{price}</h1>
+        <p>{description}</p>
+        <Button onClick={onClick}>{buttonText}</Button>
       </div>
-      <Button className="w-full mt-4" onClick={onClick}>
-        {buttonText}
-      </Button>
-      <ul className="space-y-4 mt-6">
-        {features.map((feature: any, index: any) => (
-          <li key={index} className="flex items-center gap-2">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              fill="none"
-              viewBox="0 0 24 24"
-              strokeWidth={1.5}
-              stroke="currentColor"
-              className="w-6 h-6"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
-              />
-            </svg>
-            {feature}
+      <ul className="space-y-4">
+        {features.map((item: string, index: any) => (
+          <li key={index} className="text-base font-semibold">
+            {item}
           </li>
         ))}
       </ul>

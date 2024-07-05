@@ -63,7 +63,7 @@ export default function MeetingActionButton() {
 
   const meetingLink = `${process.env.NEXT_PUBLIC_BASE_URL}/meeting/${callDetail?.id}`;
   return (
-    <div className="w-full grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-6">
+    <div className="w-full grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-6 ">
       <HomeMeetingCard
         img="/icons/add.svg"
         title="New Meeting"
